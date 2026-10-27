@@ -1,0 +1,905 @@
+[
+  {
+    "user": "Nia",
+    "text": "Hey chat, glad to be here!",
+    "delayMs": 520
+  },
+  {
+    "user": "Kofi",
+    "text": "That last round was close",
+    "delayMs": 630
+  },
+  {
+    "user": "Amara",
+    "text": "how far everybody",
+    "delayMs": 740
+  },
+  {
+    "user": "Léa",
+    "text": "wetin dey happen for here",
+    "delayMs": 850
+  },
+  {
+    "user": "Mateo",
+    "text": "Ẹ káàrọ̀ gbogbo eniyan",
+    "delayMs": 960
+  },
+  {
+    "user": "Tobi",
+    "text": "Báwo ni, ẹ̀yin ọ̀rẹ́ mi",
+    "delayMs": 520
+  },
+  {
+    "user": "Zara",
+    "text": "Bonjour tout le monde",
+    "delayMs": 630
+  },
+  {
+    "user": "Chidi",
+    "text": "Merci pour le stream",
+    "delayMs": 740
+  },
+  {
+    "user": "Fatima",
+    "text": "Hola, ¿cómo están?",
+    "delayMs": 850
+  },
+  {
+    "user": "Yemi",
+    "text": "Vamos, buena partida",
+    "delayMs": 960
+  },
+  {
+    "user": "Ayo",
+    "text": "I think the next level is harder",
+    "delayMs": 520
+  },
+  {
+    "user": "Mariam",
+    "text": "abeg give me one more try",
+    "delayMs": 630
+  },
+  {
+    "user": "Bola",
+    "text": "ẹ ṣé fún eré náà",
+    "delayMs": 740
+  },
+  {
+    "user": "Sam",
+    "text": "Ó dára gan-an",
+    "delayMs": 850
+  },
+  {
+    "user": "Ife",
+    "text": "C’est vraiment sympa",
+    "delayMs": 960
+  },
+  {
+    "user": "Emeka",
+    "text": "On joue encore?",
+    "delayMs": 520
+  },
+  {
+    "user": "Ada",
+    "text": "¡Qué buena jugada!",
+    "delayMs": 630
+  },
+  {
+    "user": "Daniel",
+    "text": "J’ai adoré ce passage",
+    "delayMs": 740
+  },
+  {
+    "user": "Seyi",
+    "text": "una don ready for the boss?",
+    "delayMs": 850
+  },
+  {
+    "user": "Luka",
+    "text": "I am ready for another round",
+    "delayMs": 960
+  },
+  {
+    "user": "Ruth",
+    "text": "mo wà dáadáa, ẹ ṣé",
+    "delayMs": 520
+  },
+  {
+    "user": "Kwame",
+    "text": "no wahala, we go win",
+    "delayMs": 630
+  },
+  {
+    "user": "João",
+    "text": "The soundtrack is great",
+    "delayMs": 740
+  },
+  {
+    "user": "Esther",
+    "text": "S’il te plaît, continue",
+    "delayMs": 850
+  },
+  {
+    "user": "Musa",
+    "text": "¿Quién ganó la partida?",
+    "delayMs": 960
+  },
+  {
+    "user": "Chidi",
+    "text": "W W POG!",
+    "delayMs": 120
+  },
+  {
+    "user": "Fatima",
+    "text": "Omo that was clean!",
+    "delayMs": 120
+  },
+  {
+    "user": "Yemi",
+    "text": "e choke! clip it",
+    "delayMs": 120
+  },
+  {
+    "user": "Ayo",
+    "text": "POGGERS KEKW",
+    "delayMs": 120
+  },
+  {
+    "user": "Mariam",
+    "text": "W W W LETS GO",
+    "delayMs": 120
+  },
+  {
+    "user": "Bola",
+    "text": "omo! LUL LUL",
+    "delayMs": 120
+  },
+  {
+    "user": "Sam",
+    "text": "abeg run that back",
+    "delayMs": 120
+  },
+  {
+    "user": "Ife",
+    "text": "W!!!",
+    "delayMs": 120
+  },
+  {
+    "user": "Emeka",
+    "text": "POG POG POG",
+    "delayMs": 120
+  },
+  {
+    "user": "Ada",
+    "text": "una too much!",
+    "delayMs": 120
+  },
+  {
+    "user": "streamer",
+    "text": "!reply fr Merci à tous",
+    "delayMs": 500
+  },
+  {
+    "user": "Daniel",
+    "text": "That was amazing! W",
+    "delayMs": 120
+  },
+  {
+    "user": "Seyi",
+    "text": "Ẹ ṣeun, ó dára!",
+    "delayMs": 120
+  },
+  {
+    "user": "Luka",
+    "text": "Incroyable, bien joué!",
+    "delayMs": 120
+  },
+  {
+    "user": "Ruth",
+    "text": "¡Qué increíble!",
+    "delayMs": 120
+  },
+  {
+    "user": "Kwame",
+    "text": "W for the clutch",
+    "delayMs": 120
+  },
+  {
+    "user": "João",
+    "text": "na wa, what a play",
+    "delayMs": 120
+  },
+  {
+    "user": "Esther",
+    "text": "Kekw, that finish",
+    "delayMs": 120
+  },
+  {
+    "user": "Musa",
+    "text": "clip it please!",
+    "delayMs": 120
+  },
+  {
+    "user": "Nia",
+    "text": "E choke o!",
+    "delayMs": 120
+  },
+  {
+    "user": "Kofi",
+    "text": "On a gagné! W",
+    "delayMs": 120
+  },
+  {
+    "user": "Amara",
+    "text": "¡Vamos! POG",
+    "delayMs": 120
+  },
+  {
+    "user": "Léa",
+    "text": "I no fit believe am",
+    "delayMs": 120
+  },
+  {
+    "user": "Mateo",
+    "text": "That dodge was perfect",
+    "delayMs": 120
+  },
+  {
+    "user": "Tobi",
+    "text": "Bravo, quelle action!",
+    "delayMs": 120
+  },
+  {
+    "user": "Zara",
+    "text": "Omo! We move!",
+    "delayMs": 120
+  },
+  {
+    "user": "Ife",
+    "text": "Can we pick the next character?",
+    "delayMs": 520
+  },
+  {
+    "user": "Emeka",
+    "text": "how body today",
+    "delayMs": 630
+  },
+  {
+    "user": "Ada",
+    "text": "mo fẹ́ràn orin yìí",
+    "delayMs": 740
+  },
+  {
+    "user": "Daniel",
+    "text": "J’adore cette musique",
+    "delayMs": 850
+  },
+  {
+    "user": "Seyi",
+    "text": "Gracias por jugar con nosotros",
+    "delayMs": 960
+  },
+  {
+    "user": "Luka",
+    "text": "No wahala, take your time",
+    "delayMs": 520
+  },
+  {
+    "user": "Ruth",
+    "text": "I think chat should choose",
+    "delayMs": 630
+  },
+  {
+    "user": "Kwame",
+    "text": "Ẹ kú iṣẹ́, streamer",
+    "delayMs": 740
+  },
+  {
+    "user": "João",
+    "text": "On continue après ça?",
+    "delayMs": 850
+  },
+  {
+    "user": "Esther",
+    "text": "¡Sigue así!",
+    "delayMs": 960
+  },
+  {
+    "user": "streamer",
+    "text": "!reply pcm thank you all",
+    "delayMs": 500
+  },
+  {
+    "user": "Musa",
+    "text": "The chat is so fun",
+    "delayMs": 520
+  },
+  {
+    "user": "Nia",
+    "text": "wetin be the next challenge",
+    "delayMs": 630
+  },
+  {
+    "user": "Kofi",
+    "text": "ẹ jọ̀ọ́, make we go",
+    "delayMs": 740
+  },
+  {
+    "user": "Amara",
+    "text": "C’est à toi de jouer",
+    "delayMs": 850
+  },
+  {
+    "user": "Léa",
+    "text": "Me gusta este juego",
+    "delayMs": 960
+  },
+  {
+    "user": "Mateo",
+    "text": "I am learning Yoruba phrases",
+    "delayMs": 520
+  },
+  {
+    "user": "Tobi",
+    "text": "na so e be sometimes",
+    "delayMs": 630
+  },
+  {
+    "user": "Zara",
+    "text": "That was a smart move",
+    "delayMs": 740
+  },
+  {
+    "user": "Chidi",
+    "text": "Ẹ káàbọ̀ sí gbogbo ènìyàn",
+    "delayMs": 850
+  },
+  {
+    "user": "Fatima",
+    "text": "Merci beaucoup à vous",
+    "delayMs": 960
+  },
+  {
+    "user": "Yemi",
+    "text": "¿Jugamos otra ronda?",
+    "delayMs": 520
+  },
+  {
+    "user": "Ayo",
+    "text": "The boss almost got us",
+    "delayMs": 630
+  },
+  {
+    "user": "Mariam",
+    "text": "make we run am again",
+    "delayMs": 740
+  },
+  {
+    "user": "Bola",
+    "text": "On va gagner cette fois",
+    "delayMs": 850
+  },
+  {
+    "user": "Sam",
+    "text": "I am watching from Lagos",
+    "delayMs": 960
+  },
+  {
+    "user": "Kwame",
+    "text": "W W W POG",
+    "delayMs": 120
+  },
+  {
+    "user": "João",
+    "text": "Another clean finish!",
+    "delayMs": 120
+  },
+  {
+    "user": "Esther",
+    "text": "omo see that combo",
+    "delayMs": 120
+  },
+  {
+    "user": "Musa",
+    "text": "e choke die!",
+    "delayMs": 120
+  },
+  {
+    "user": "Nia",
+    "text": "KEKW POG LUL",
+    "delayMs": 120
+  },
+  {
+    "user": "Kofi",
+    "text": "clip it right now",
+    "delayMs": 120
+  },
+  {
+    "user": "Amara",
+    "text": "una dey see this?",
+    "delayMs": 120
+  },
+  {
+    "user": "Léa",
+    "text": "W for everybody",
+    "delayMs": 120
+  },
+  {
+    "user": "Mateo",
+    "text": "That was unreal!",
+    "delayMs": 120
+  },
+  {
+    "user": "Tobi",
+    "text": "Wahala for the boss",
+    "delayMs": 120
+  },
+  {
+    "user": "Zara",
+    "text": "Ẹ ṣé, ó dùn mọ́ni",
+    "delayMs": 120
+  },
+  {
+    "user": "Chidi",
+    "text": "POGGERS!",
+    "delayMs": 120
+  },
+  {
+    "user": "Fatima",
+    "text": "C’était incroyable",
+    "delayMs": 120
+  },
+  {
+    "user": "Yemi",
+    "text": "¡Muy buena!",
+    "delayMs": 120
+  },
+  {
+    "user": "Ayo",
+    "text": "we move! we move!",
+    "delayMs": 120
+  },
+  {
+    "user": "Mariam",
+    "text": "I no fit shout",
+    "delayMs": 120
+  },
+  {
+    "user": "Bola",
+    "text": "Abeg that was too good",
+    "delayMs": 120
+  },
+  {
+    "user": "Sam",
+    "text": "W W W",
+    "delayMs": 120
+  },
+  {
+    "user": "Ife",
+    "text": "This game is wild",
+    "delayMs": 120
+  },
+  {
+    "user": "Emeka",
+    "text": "E choke!",
+    "delayMs": 120
+  },
+  {
+    "user": "Ada",
+    "text": "Littéralement parfait",
+    "delayMs": 120
+  },
+  {
+    "user": "Daniel",
+    "text": "¡Qué locura!",
+    "delayMs": 120
+  },
+  {
+    "user": "Seyi",
+    "text": "Omo, last life!",
+    "delayMs": 120
+  },
+  {
+    "user": "Luka",
+    "text": "the timing was perfect",
+    "delayMs": 120
+  },
+  {
+    "user": "Ruth",
+    "text": "À la prochaine, boss!",
+    "delayMs": 120
+  },
+  {
+    "user": "Léa",
+    "text": "Hey chat, glad to be here!",
+    "delayMs": 520
+  },
+  {
+    "user": "Mateo",
+    "text": "That last round was close",
+    "delayMs": 630
+  },
+  {
+    "user": "Tobi",
+    "text": "how far everybody",
+    "delayMs": 740
+  },
+  {
+    "user": "Zara",
+    "text": "wetin dey happen for here",
+    "delayMs": 850
+  },
+  {
+    "user": "Chidi",
+    "text": "Ẹ káàrọ̀ gbogbo eniyan",
+    "delayMs": 960
+  },
+  {
+    "user": "Fatima",
+    "text": "Báwo ni, ẹ̀yin ọ̀rẹ́ mi",
+    "delayMs": 520
+  },
+  {
+    "user": "Yemi",
+    "text": "Bonjour tout le monde",
+    "delayMs": 630
+  },
+  {
+    "user": "Ayo",
+    "text": "Merci pour le stream",
+    "delayMs": 740
+  },
+  {
+    "user": "Mariam",
+    "text": "Hola, ¿cómo están?",
+    "delayMs": 850
+  },
+  {
+    "user": "Bola",
+    "text": "Vamos, buena partida",
+    "delayMs": 960
+  },
+  {
+    "user": "Sam",
+    "text": "I think the next level is harder",
+    "delayMs": 520
+  },
+  {
+    "user": "Ife",
+    "text": "abeg give me one more try",
+    "delayMs": 630
+  },
+  {
+    "user": "Emeka",
+    "text": "ẹ ṣé fún eré náà",
+    "delayMs": 740
+  },
+  {
+    "user": "Ada",
+    "text": "Ó dára gan-an",
+    "delayMs": 850
+  },
+  {
+    "user": "Daniel",
+    "text": "C’est vraiment sympa",
+    "delayMs": 960
+  },
+  {
+    "user": "Seyi",
+    "text": "On joue encore?",
+    "delayMs": 520
+  },
+  {
+    "user": "Luka",
+    "text": "¡Qué buena jugada!",
+    "delayMs": 630
+  },
+  {
+    "user": "Ruth",
+    "text": "J’ai adoré ce passage",
+    "delayMs": 740
+  },
+  {
+    "user": "Kwame",
+    "text": "una don ready for the boss?",
+    "delayMs": 850
+  },
+  {
+    "user": "João",
+    "text": "I am ready for another round",
+    "delayMs": 960
+  },
+  {
+    "user": "Esther",
+    "text": "mo wà dáadáa, ẹ ṣé",
+    "delayMs": 520
+  },
+  {
+    "user": "Musa",
+    "text": "no wahala, we go win",
+    "delayMs": 630
+  },
+  {
+    "user": "Nia",
+    "text": "The soundtrack is great",
+    "delayMs": 740
+  },
+  {
+    "user": "Kofi",
+    "text": "S’il te plaît, continue",
+    "delayMs": 850
+  },
+  {
+    "user": "Amara",
+    "text": "¿Quién ganó la partida?",
+    "delayMs": 960
+  },
+  {
+    "user": "Ayo",
+    "text": "Can we pick the next character?",
+    "delayMs": 520
+  },
+  {
+    "user": "Mariam",
+    "text": "how body today",
+    "delayMs": 630
+  },
+  {
+    "user": "Bola",
+    "text": "mo fẹ́ràn orin yìí",
+    "delayMs": 740
+  },
+  {
+    "user": "Sam",
+    "text": "J’adore cette musique",
+    "delayMs": 850
+  },
+  {
+    "user": "Ife",
+    "text": "Gracias por jugar con nosotros",
+    "delayMs": 960
+  },
+  {
+    "user": "Emeka",
+    "text": "No wahala, take your time",
+    "delayMs": 520
+  },
+  {
+    "user": "Ada",
+    "text": "I think chat should choose",
+    "delayMs": 630
+  },
+  {
+    "user": "Daniel",
+    "text": "Ẹ kú iṣẹ́, streamer",
+    "delayMs": 740
+  },
+  {
+    "user": "Seyi",
+    "text": "On continue après ça?",
+    "delayMs": 850
+  },
+  {
+    "user": "Luka",
+    "text": "¡Sigue así!",
+    "delayMs": 960
+  },
+  {
+    "user": "Ruth",
+    "text": "The chat is so fun",
+    "delayMs": 520
+  },
+  {
+    "user": "Kwame",
+    "text": "wetin be the next challenge",
+    "delayMs": 630
+  },
+  {
+    "user": "João",
+    "text": "ẹ jọ̀ọ́, make we go",
+    "delayMs": 740
+  },
+  {
+    "user": "Esther",
+    "text": "C’est à toi de jouer",
+    "delayMs": 850
+  },
+  {
+    "user": "Musa",
+    "text": "Me gusta este juego",
+    "delayMs": 960
+  },
+  {
+    "user": "Nia",
+    "text": "I am learning Yoruba phrases",
+    "delayMs": 520
+  },
+  {
+    "user": "Kofi",
+    "text": "na so e be sometimes",
+    "delayMs": 630
+  },
+  {
+    "user": "Amara",
+    "text": "That was a smart move",
+    "delayMs": 740
+  },
+  {
+    "user": "Léa",
+    "text": "Ẹ káàbọ̀ sí gbogbo ènìyàn",
+    "delayMs": 850
+  },
+  {
+    "user": "Mateo",
+    "text": "Merci beaucoup à vous",
+    "delayMs": 960
+  },
+  {
+    "user": "Tobi",
+    "text": "¿Jugamos otra ronda?",
+    "delayMs": 520
+  },
+  {
+    "user": "Zara",
+    "text": "The boss almost got us",
+    "delayMs": 630
+  },
+  {
+    "user": "Chidi",
+    "text": "make we run am again",
+    "delayMs": 740
+  },
+  {
+    "user": "Fatima",
+    "text": "On va gagner cette fois",
+    "delayMs": 850
+  },
+  {
+    "user": "Yemi",
+    "text": "I am watching from Lagos",
+    "delayMs": 960
+  },
+  {
+    "user": "Nia",
+    "text": "That was a great stream moment",
+    "delayMs": 700
+  },
+  {
+    "user": "Kofi",
+    "text": "chat is thinking about the next challenge",
+    "delayMs": 500
+  },
+  {
+    "user": "Amara",
+    "text": "Let us take a quiet moment",
+    "delayMs": 500
+  },
+  {
+    "pauseBeforeMs": 30000
+  },
+  {
+    "user": "Nia",
+    "text": "!vote a",
+    "delayMs": 500
+  },
+  {
+    "user": "Kofi",
+    "text": "!vote b",
+    "delayMs": 650
+  },
+  {
+    "user": "Amara",
+    "text": "!vote b",
+    "delayMs": 800
+  },
+  {
+    "user": "Léa",
+    "text": "!vote c",
+    "delayMs": 950
+  },
+  {
+    "user": "Mateo",
+    "text": "!vote a",
+    "delayMs": 500
+  },
+  {
+    "user": "Tobi",
+    "text": "!vote b",
+    "delayMs": 650
+  },
+  {
+    "user": "Zara",
+    "text": "!vote c",
+    "delayMs": 800
+  },
+  {
+    "user": "Chidi",
+    "text": "!vote b",
+    "delayMs": 950
+  },
+  {
+    "user": "Fatima",
+    "text": "!vote a",
+    "delayMs": 500
+  },
+  {
+    "user": "Yemi",
+    "text": "!vote c",
+    "delayMs": 650
+  },
+  {
+    "user": "Ayo",
+    "text": "!vote b",
+    "delayMs": 800
+  },
+  {
+    "user": "Mariam",
+    "text": "!vote b",
+    "delayMs": 950
+  },
+  {
+    "user": "Bola",
+    "text": "!vote a",
+    "delayMs": 500
+  },
+  {
+    "user": "Sam",
+    "text": "!vote c",
+    "delayMs": 650
+  },
+  {
+    "user": "Ife",
+    "text": "!vote b",
+    "delayMs": 800
+  },
+  {
+    "user": "Emeka",
+    "text": "!vote a",
+    "delayMs": 950
+  },
+  {
+    "user": "Ada",
+    "text": "!vote b",
+    "delayMs": 500
+  },
+  {
+    "user": "Daniel",
+    "text": "!vote c",
+    "delayMs": 650
+  },
+  {
+    "user": "Seyi",
+    "text": "!vote b",
+    "delayMs": 800
+  },
+  {
+    "user": "Luka",
+    "text": "!vote a",
+    "delayMs": 950
+  },
+  {
+    "user": "Ruth",
+    "text": "I vote for option b",
+    "delayMs": 500
+  },
+  {
+    "user": "Kwame",
+    "text": "Option c sounds fun",
+    "delayMs": 650
+  },
+  {
+    "user": "João",
+    "text": "I am team A",
+    "delayMs": 800
+  },
+  {
+    "user": "Esther",
+    "text": "!vote b",
+    "delayMs": 950
+  },
+  {
+    "user": "Musa",
+    "text": "!vote c",
+    "delayMs": 500
+  }
+]

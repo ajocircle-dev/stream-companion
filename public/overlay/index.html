@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Stream Companion Overlay</title>
+    <link rel="stylesheet" href="/overlay/style.css" />
+  </head>
+  <body>
+    <!-- All visual panels float above a transparent OBS browser-source canvas. -->
+    <main class="dashboard" aria-label="Stream Companion overlay">
+      <section class="card hype-panel" aria-labelledby="hype-title">
+        <div class="section-title" id="hype-title">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>Chat hype</span>
+          <strong id="score">0</strong>
+        </div>
+        <div class="meter" role="meter" aria-label="Chat hype score">
+          <i id="meter"></i>
+        </div>
+        <div class="meter-caption">
+          <span>Live score <b id="scoreSmall">0.0</b></span>
+          <span>Baseline <b id="baseline">0.0</b></span>
+        </div>
+      </section>
+
+      <section class="card moments-panel" aria-labelledby="moments-title">
+        <h2 id="moments-title">Top moments</h2>
+        <div id="moments" class="moment-list">
+          <p class="empty">Big moments will show up here.</p>
+        </div>
+      </section>
+
+      <section
+        class="card translations-panel"
+        aria-labelledby="translations-title"
+      >
+        <h2 id="translations-title">Live translations</h2>
+        <div id="translations" class="translation-list">
+          <p class="empty">Chat translations appear here.</p>
+        </div>
+      </section>
+
+      <section
+        class="card vote-panel hidden"
+        id="vote"
+        aria-labelledby="voteTitle"
+        aria-live="polite"
+      >
+        <div class="vote-heading">
+          <div>
+            <p class="eyebrow">Chat decides</p>
+            <h2 id="voteTitle">Next challenge?</h2>
+          </div>
+          <p id="countdown" class="countdown"></p>
+        </div>
+        <div id="voteOptions" class="vote-options"></div>
+      </section>
+    </main>
+    <script src="/overlay/app.js"></script>
+  </body>
+</html>
