@@ -13,17 +13,18 @@ type HypeDetectorOptions = {
   floor?: number;
   cooldownMs?: number;
   windowSeconds?: number;
+  spikeWindowSeconds?: number;
 };
 
 const hypeKeywords =
   /\b(?:w|pog|poggers|lol|lmao|omo|ehen|haha|kekw|gg|clip it|lets go|let's go|e choke)\b/gi;
 const recognizableEmotes = /\b(?:Kappa|PogChamp|LUL|KEKW)\b/g;
 
-/** Scores per-second chat activity and emits threshold spikes with an EWMA baseline. */
+/** Scores a rolling three-second chat burst against a decaying per-second EWMA baseline. */
 export class HypeDetector {
   private readonly buckets = new Map<number, HypeBucket>();
   private lastSpike = -Infinity;
-  private baseline = 0.5;
+  private baselinePerSecond = 2;
   private lastBaselineSecond?: number;
 
   constructor(private readonly options: HypeDetectorOptions = {}) {}
@@ -44,33 +45,33 @@ export class HypeDetector {
     this.buckets.set(second, bucket);
     this.pruneBuckets(second);
 
+    const score = this.rollingScore(second);
     const spike =
-      bucket.score >= (this.options.floor ?? 8) &&
-      bucket.score > this.baseline * (this.options.multiplier ?? 2.4) &&
-      message.ts - this.lastSpike >= (this.options.cooldownMs ?? 30_000);
+      score >= (this.options.floor ?? 8) &&
+      score > this.rollingBaseline() * (this.options.multiplier ?? 2.4) &&
+      message.ts - this.lastSpike >= (this.options.cooldownMs ?? 12_000);
 
     if (spike) {
       this.lastSpike = message.ts;
     }
 
     return {
-      score: bucket.score,
-      baseline: this.baseline,
+      score,
+      baseline: this.rollingBaseline(),
       spike,
-      messages: bucket.messages.slice(),
+      messages: this.rollingMessages(second),
     };
   }
 
   snapshot(timestamp = Date.now()): HypeResult {
     const second = Math.floor(timestamp / 1000);
     this.updateBaseline(second);
-    const bucket = this.buckets.get(second);
 
     return {
-      score: bucket?.score ?? 0,
-      baseline: this.baseline,
+      score: this.rollingScore(second),
+      baseline: this.rollingBaseline(),
       spike: false,
-      messages: bucket?.messages.slice() ?? [],
+      messages: this.rollingMessages(second),
     };
   }
 
@@ -82,14 +83,43 @@ export class HypeDetector {
       const elapsedSeconds = Math.min(second - this.lastBaselineSecond, 60);
       const previousScore =
         this.buckets.get(this.lastBaselineSecond)?.score ?? 0;
-      this.baseline = this.baseline * 0.85 + previousScore * 0.15;
+      this.baselinePerSecond =
+        this.baselinePerSecond * 0.85 + previousScore * 0.15;
 
       for (let elapsed = 1; elapsed < elapsedSeconds; elapsed += 1) {
-        this.baseline *= 0.85;
+        this.baselinePerSecond *= 0.85;
       }
     }
 
     this.lastBaselineSecond = second;
+  }
+
+  private rollingScore(currentSecond: number): number {
+    const windowSeconds = this.options.spikeWindowSeconds ?? 3;
+    let score = 0;
+
+    for (let offset = 0; offset < windowSeconds; offset += 1) {
+      score += this.buckets.get(currentSecond - offset)?.score ?? 0;
+    }
+
+    return score;
+  }
+
+  private rollingBaseline(): number {
+    return this.baselinePerSecond * (this.options.spikeWindowSeconds ?? 3);
+  }
+
+  private rollingMessages(currentSecond: number): ChatMessage[] {
+    const windowSeconds = this.options.spikeWindowSeconds ?? 3;
+    const messages: ChatMessage[] = [];
+
+    for (let offset = windowSeconds - 1; offset >= 0; offset -= 1) {
+      messages.push(
+        ...(this.buckets.get(currentSecond - offset)?.messages ?? []),
+      );
+    }
+
+    return messages;
   }
 
   private pruneBuckets(currentSecond: number): void {

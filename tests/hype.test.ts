@@ -27,6 +27,15 @@ describe('HypeDetector', () => {
     expect(results.some((result) => result.spike)).toBe(false);
   });
 
+  it('does not spike on steady chat at a moderate three-message-per-second rate', () => {
+    const detector = new HypeDetector();
+    const results = Array.from({ length: 90 }, (_, index) =>
+      detector.ingest(message('Nice gameplay', index * 333)),
+    );
+
+    expect(results.some((result) => result.spike)).toBe(false);
+  });
+
   it('spikes when several hype messages arrive within one second', () => {
     const detector = new HypeDetector({ floor: 8 });
     const results = Array.from({ length: 5 }, (_, index) =>
@@ -37,23 +46,49 @@ describe('HypeDetector', () => {
     expect(results.some((result) => result.spike)).toBe(true);
   });
 
-  it('does not emit another spike during the configured cooldown', () => {
-    const detector = new HypeDetector({ floor: 2, cooldownMs: 30_000 });
-    const first = detector.ingest(message('W POG', 1000));
-    const second = detector.ingest(message('W POG', 5000));
-
-    expect(first.spike).toBe(true);
-    expect(second.spike).toBe(false);
-  });
-
-  it('allows a new spike after the cooldown ends', () => {
-    const detector = new HypeDetector({ floor: 2, cooldownMs: 30_000 });
-    detector.ingest(message('W POG', 1000));
-    const laterResults = Array.from({ length: 5 }, () =>
-      detector.ingest(message('W POG', 32_000)),
+  it('lets a second burst spike after fifteen seconds with the default cooldown', () => {
+    const detector = new HypeDetector();
+    const firstBurst = Array.from({ length: 5 }, (_, index) =>
+      detector.ingest(message('W POG KEKW', 1_000 + index * 100, ['PogChamp'])),
+    );
+    const secondBurst = Array.from({ length: 5 }, (_, index) =>
+      detector.ingest(
+        message('W POG KEKW', 16_000 + index * 100, ['PogChamp']),
+      ),
     );
 
-    expect(laterResults.some((result) => result.spike)).toBe(true);
+    expect(firstBurst.some((result) => result.spike)).toBe(true);
+    expect(secondBurst.some((result) => result.spike)).toBe(true);
+  });
+
+  it('suppresses a second burst that occurs inside the default cooldown', () => {
+    const detector = new HypeDetector();
+    const firstBurst = Array.from({ length: 5 }, (_, index) =>
+      detector.ingest(message('W POG KEKW', 1_000 + index * 100, ['PogChamp'])),
+    );
+    const secondBurst = Array.from({ length: 5 }, (_, index) =>
+      detector.ingest(message('W POG KEKW', 9_000 + index * 100, ['PogChamp'])),
+    );
+
+    expect(firstBurst.some((result) => result.spike)).toBe(true);
+    expect(secondBurst.some((result) => result.spike)).toBe(false);
+  });
+
+  it('spikes on a dense keyword and emote burst straddling a second boundary', () => {
+    const detector = new HypeDetector();
+    const results = Array.from({ length: 8 }, (_, index) =>
+      detector.ingest(
+        message(
+          'W POG LUL',
+          index < 3 ? 1_990 + index * 4 : 2_001 + (index - 3),
+          ['PogChamp'],
+        ),
+      ),
+    );
+
+    expect(results.at(-1)?.score).toBeGreaterThanOrEqual(8);
+    expect(results.some((result) => result.spike)).toBe(true);
+    expect(results.at(-1)?.messages).toHaveLength(8);
   });
 
   it('decays the EWMA baseline through empty seconds', () => {

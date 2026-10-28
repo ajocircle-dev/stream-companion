@@ -38,8 +38,8 @@ body {
   position: absolute;
   inset: 42px auto auto 42px;
   display: grid;
-  width: 1110px;
-  grid-template-columns: 500px 570px;
+  width: 500px;
+  grid-template-columns: 500px;
   grid-template-rows: auto 1fr;
   align-items: start;
   gap: 18px;
@@ -65,9 +65,12 @@ body {
 }
 
 .translations-panel {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  min-height: 400px;
+  position: fixed;
+  top: 42px;
+  right: 42px;
+  width: 520px;
+  max-height: 760px;
+  overflow: auto;
   padding: 22px 24px;
 }
 

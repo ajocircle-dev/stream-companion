@@ -31,7 +31,20 @@ const markers: Record<Exclude<Language, 'unknown'>, string[]> = {
     'avec',
   ],
   es: ['hola', 'gracias', 'buenos', 'estás', 'vamos', 'por', 'pero', 'muchas'],
-  en: ['the', 'and', 'you', 'this', 'is', 'are', 'hello', 'thanks'],
+  en: [
+    'the',
+    'and',
+    'you',
+    'this',
+    'is',
+    'are',
+    'hello',
+    'thanks',
+    'thank you',
+    'good morning',
+    'good game',
+    'great',
+  ],
 };
 
 /** Returns the best supported language guess and an approximate confidence. */

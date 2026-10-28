@@ -8,17 +8,49 @@ export interface TranslationProvider {
   ): Promise<{ translated: string; confidence: number } | null>;
 }
 
-/** Sends translations to a self-hosted LibreTranslate server when configured. */
+/** Sends translations to LibreTranslate after a cached local health check. */
 export class LibreTranslateProvider implements TranslationProvider {
   readonly name = 'LibreTranslate';
+  private healthCache?: { healthy: boolean; checkedAt: number };
+  private readonly healthCacheMs = 30_000;
 
   constructor(
     private readonly url: string,
     private readonly apiKey = '',
   ) {}
 
-  async translate(text: string, source: string, target: string) {
+  async healthCheck(): Promise<boolean> {
     if (!this.url) {
+      return false;
+    }
+
+    const now = Date.now();
+    if (
+      this.healthCache &&
+      now - this.healthCache.checkedAt < this.healthCacheMs
+    ) {
+      return this.healthCache.healthy;
+    }
+
+    let healthy = false;
+    try {
+      const response = await fetch(`${this.url.replace(/\/$/, '')}/languages`, {
+        signal: AbortSignal.timeout(4000),
+      });
+      if (response.ok) {
+        const languages = (await response.json()) as unknown;
+        healthy = Array.isArray(languages) && languages.length > 0;
+      }
+    } catch {
+      healthy = false;
+    }
+
+    this.healthCache = { healthy, checkedAt: now };
+    return healthy;
+  }
+
+  async translate(text: string, source: string, target: string) {
+    if (!(await this.healthCheck())) {
       return null;
     }
 
@@ -26,10 +58,11 @@ export class LibreTranslateProvider implements TranslationProvider {
       const response = await fetch(`${this.url.replace(/\/$/, '')}/translate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        signal: AbortSignal.timeout(8000),
         body: JSON.stringify({
           q: text,
-          source: source === 'pcm' ? 'en' : source,
-          target,
+          source: mapLibreLanguage(source),
+          target: mapLibreLanguage(target),
           format: 'text',
           ...(this.apiKey ? { api_key: this.apiKey } : {}),
         }),
@@ -41,7 +74,7 @@ export class LibreTranslateProvider implements TranslationProvider {
 
       const data = (await response.json()) as { translatedText?: string };
       return data.translatedText
-        ? { translated: data.translatedText, confidence: 0.7 }
+        ? { translated: data.translatedText, confidence: 0.75 }
         : null;
     } catch {
       return null;
@@ -49,14 +82,38 @@ export class LibreTranslateProvider implements TranslationProvider {
   }
 }
 
-/** Calls a compatible local NLLB endpoint for Yoruba language pairs. */
+const libreLanguageCodes: Record<string, string> = {
+  pcm: 'en',
+  en: 'en',
+  fr: 'fr',
+  es: 'es',
+  de: 'de',
+  pt: 'pt',
+};
+
+function mapLibreLanguage(language: string): string {
+  const normalized = language.toLocaleLowerCase();
+  return libreLanguageCodes[normalized] ?? normalized;
+}
+
+/** Calls a compatible local NLLB endpoint for Yoruba and English pairs. */
 export class NllbProvider implements TranslationProvider {
   readonly name = 'NLLB';
+  private readonly languageCodes: Record<string, string> = {
+    yo: 'yor_Latn',
+    en: 'eng_Latn',
+  };
 
   constructor(private readonly url: string) {}
 
   async translate(text: string, source: string, target: string) {
-    if (!this.url || (source !== 'yo' && target !== 'yo')) {
+    const sourceCode = this.languageCodes[source];
+    const targetCode = this.languageCodes[target];
+    const isYorubaPair =
+      (source === 'yo' && target === 'en') ||
+      (source === 'en' && target === 'yo');
+
+    if (!this.url || !isYorubaPair || !sourceCode || !targetCode) {
       return null;
     }
 
@@ -64,11 +121,11 @@ export class NllbProvider implements TranslationProvider {
       const response = await fetch(this.url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        // Endpoint shape: request {text, source_lang, target_lang}; response {translation}.
+        signal: AbortSignal.timeout(15_000),
         body: JSON.stringify({
           text,
-          source_lang: source,
-          target_lang: target,
+          source_lang: sourceCode,
+          target_lang: targetCode,
         }),
       });
 
@@ -78,7 +135,7 @@ export class NllbProvider implements TranslationProvider {
 
       const data = (await response.json()) as { translation?: string };
       return data.translation
-        ? { translated: data.translation, confidence: 0.55 }
+        ? { translated: data.translation, confidence: 0.75 }
         : null;
     } catch {
       return null;

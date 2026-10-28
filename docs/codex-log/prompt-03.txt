@@ -1,0 +1,41 @@
+Phase 2 of the same Stream Companion thread. Mock mode only. Do not commit or push. Do not enable OpenAI. Do not call paid APIs. Environment already prepared for you (do not reinstall):
+
+- LibreTranslate is RUNNING at http://127.0.0.1:5000 with en/fr/es/de/pt loaded. Example: POST /translate {"q":"Bonjour","source":"fr","target":"en","format":"text"} → {"translatedText":"..."}. GET /languages works. Health: GET /languages.
+- NLLB-200 distilled 600M CT2 int8 model is ON DISK at /workspace/models/nllb-200-distilled-600M-ct2-int8 (model.bin + sentencepiece.bpe.model + shared_vocabulary.txt). Python venv with ctranslate2 + transformers is at /workspace/lt-venv/bin/python. You write a small local HTTP server that uses this model; start it yourself on a free port (e.g. 5001).
+
+Goals:
+
+1) LibreTranslate wiring
+- Default LIBRETRANSLATE_URL to http://127.0.0.1:5000 in .env.example and make the app pick that up when unset OR document clearly and write a local .env (gitignored) with LIBRETRANSLATE_URL=http://127.0.0.1:5000 and OPENAI_ENABLED=false.
+- Improve LibreTranslateProvider: map language codes (pcm→en for source is already there; ensure fr/es/de/pt work), add a lightweight healthCheck() that GETs /languages (cache result ~30s), and skip/fail soft when unhealthy. Confidence ~0.75 when healthy.
+- Add tests that mock fetch for LibreTranslate success + unhealthy fallback. Keep OpenAI path off by default (OPENAI_ENABLED must stay false).
+
+2) Yoruba via local NLLB
+- Add scripts/nllb_server.py (or similar under scripts/) that loads the CT2 model from /workspace/models/nllb-200-distilled-600M-ct2-int8, exposes POST /translate with JSON {text, source_lang, target_lang} and returns {translation}. Map yo↔eng_Latn / yor_Latn using NLLB codes (yo→yor_Latn, en→eng_Latn). Support yo↔en both directions. Listen on 127.0.0.1:5001.
+- Start it in the background for smoke testing. Wire NllbProvider to http://127.0.0.1:5001/translate (or whatever path you choose; update .env.example NLLB_URL). Prefer NLLB for Yoruba before glossary; keep glossary as fallback when NLLB is down.
+- If the model fails to load or is too heavy, document that in README and keep glossary — but try first; this box has ~9GB available RAM and CT2 int8 ~600MB.
+- Add a unit test that mocks the NLLB HTTP response for a Yoruba string.
+
+3) Pidgin expansion + reverse replies
+- Expand pidgin-phrases.json to at least 120 entries (longest-match-first already). Cover common stream chat: greetings, hype, insults-lite, thanks, questions, gaming slang. Both directions.
+- Ensure !reply pcm|yo|fr|es works: streamer English → viewer language via the provider chain (Pidgin phrases for pcm, NLLB/glossary for yo, LibreTranslate for fr/es). Add/adjust tests for reverse translation.
+
+4) Overlay layout fix (1920x1080 stream-ready)
+- Right-align the translations panel on the canvas (fixed to the RIGHT side, e.g. right: 42px; top: 42px; width ~520px), NOT as the second column of a left-anchored dashboard.
+- Left column: hype meter + top moments (left: 42px).
+- Vote panel stays bottom-center.
+- Keep transparent OBS background, high contrast, animations. Clean gaps so panels don't collide. ?demo=1 and ?bg=1 still work.
+
+5) Hype detection: why only 1 burst in a ~40s demo
+- Root cause (confirm with a test): default HYPE_COOLDOWN_MS=30000. Feeder timestamps use wall-clock Date.now(). At --speed=2 the two scripted bursts are only ~11s of wall time apart, so the second is blocked by cooldown.
+- Fix: lower default cooldown to 12000 ms (still enough to avoid double-fire within one burst). Optionally also score a short rolling window (e.g. last 2–3 seconds) so dense bursts still spike reliably if messages straddle second boundaries — but keep the API/tests clear.
+- Add tests: (a) two bursts ~15s apart both spike with new default; (b) two bursts within cooldown still suppress; (c) a dense keyword/emote burst still spikes. Update .env.example HYPE_COOLDOWN_MS=12000.
+
+6) Docs + npm scripts
+- README: how to start LibreTranslate (command using /workspace/lt-venv), how to start NLLB server, mock demo flow, env vars. Note OpenAI is optional and OFF by default. Mention Codex session id stays 01a17cc0-fef4-7b01-8ddb-2a1e98983343.
+- Optional npm scripts: "translate:lt" is not required (already running); add "nllb": "..." to start the NLLB server with the venv python if practical.
+
+7) Verify
+- Run format, typecheck, tests, build.
+- Smoke: with LIBRETRANSLATE_URL and NLLB_URL set, start the app briefly, POST a French and a Yoruba mock chat message, curl /state, confirm translations appear with providers LibreTranslate / NLLB (or glossary if NLLB failed). Stop processes.
+- Do NOT commit or push. Reply with: summary of changes, test count, whether NLLB loaded, any failures, and the hype fix explanation.

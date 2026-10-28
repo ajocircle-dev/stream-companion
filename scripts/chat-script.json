@@ -385,6 +385,9 @@
     "delayMs": 960
   },
   {
+    "pauseBeforeMs": 4000
+  },
+  {
     "user": "Kwame",
     "text": "W W W POG",
     "delayMs": 120
