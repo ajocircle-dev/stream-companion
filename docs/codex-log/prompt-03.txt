@@ -13,7 +13,7 @@ Goals:
 2) Yoruba via local NLLB
 - Add scripts/nllb_server.py (or similar under scripts/) that loads the CT2 model from /workspace/models/nllb-200-distilled-600M-ct2-int8, exposes POST /translate with JSON {text, source_lang, target_lang} and returns {translation}. Map yo↔eng_Latn / yor_Latn using NLLB codes (yo→yor_Latn, en→eng_Latn). Support yo↔en both directions. Listen on 127.0.0.1:5001.
 - Start it in the background for smoke testing. Wire NllbProvider to http://127.0.0.1:5001/translate (or whatever path you choose; update .env.example NLLB_URL). Prefer NLLB for Yoruba before glossary; keep glossary as fallback when NLLB is down.
-- If the model fails to load or is too heavy, document that in README and keep glossary — but try first; this box has ~9GB available RAM and CT2 int8 ~600MB.
+- If the model fails to load or is too heavy, document that in README and keep glossary - but try first; this box has ~9GB available RAM and CT2 int8 ~600MB.
 - Add a unit test that mocks the NLLB HTTP response for a Yoruba string.
 
 3) Pidgin expansion + reverse replies
@@ -28,7 +28,7 @@ Goals:
 
 5) Hype detection: why only 1 burst in a ~40s demo
 - Root cause (confirm with a test): default HYPE_COOLDOWN_MS=30000. Feeder timestamps use wall-clock Date.now(). At --speed=2 the two scripted bursts are only ~11s of wall time apart, so the second is blocked by cooldown.
-- Fix: lower default cooldown to 12000 ms (still enough to avoid double-fire within one burst). Optionally also score a short rolling window (e.g. last 2–3 seconds) so dense bursts still spike reliably if messages straddle second boundaries — but keep the API/tests clear.
+- Fix: lower default cooldown to 12000 ms (still enough to avoid double-fire within one burst). Optionally also score a short rolling window (e.g. last 2-3 seconds) so dense bursts still spike reliably if messages straddle second boundaries - but keep the API/tests clear.
 - Add tests: (a) two bursts ~15s apart both spike with new default; (b) two bursts within cooldown still suppress; (c) a dense keyword/emote burst still spikes. Update .env.example HYPE_COOLDOWN_MS=12000.
 
 6) Docs + npm scripts

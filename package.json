@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.{ts,json}\" \"scripts/**/*.{ts,mjs,json}\" \"tests/**/*.ts\" \"public/overlay/**/*.{html,css,js}\"",
-    "nllb": "/workspace/lt-venv/bin/python scripts/nllb_server.py"
+    "nllb": "python3 scripts/nllb_server.py"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
